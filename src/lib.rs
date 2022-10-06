@@ -17,10 +17,13 @@ pub struct MonotonicQueue<T> {
 
 impl<T> MonotonicQueue<T> {
     /// Create an empty monotonic queue.
-    /// 
+    ///
     /// # Example
-    /// 
-    /// let mq = MonotonicQueue::new();
+    /// ```
+    /// use monotonicqueue::MonotonicQueue;
+    ///
+    /// let mq: MonotonicQueue<i32> = MonotonicQueue::new();
+    /// ```
     pub fn new() -> MonotonicQueue<T> {
         MonotonicQueue {
             dq: VecDeque::new(),
@@ -28,18 +31,19 @@ impl<T> MonotonicQueue<T> {
     }
 
     /// Provides a peek to the front element, or None.
-    /// 
+    ///
     /// # Example
-    /// 
-    /// use mq::MonotonicQueue;
-    /// 
-    /// let mut mq = MonotonicQueue::new()
-    /// 
-    /// mq.push_back(1);
-    /// mq.push_back(2);
-    /// 
+    /// ```
+    /// use monotonicqueue::MonotonicQueue;
+    ///
+    /// let mut mq = MonotonicQueue::new();
+    ///
+    /// let is_less = |n1: &i32, n2:&i32| n1.lt(n2);
+    /// mq.push_by(1, is_less);
+    /// mq.push_by(2, is_less);
+    ///
     /// assert_eq!(mq.peek(), Some(&2));
-    /// 
+    /// ```
     pub fn peek(&self) -> Option<&T> {
         self.dq.front()
     }
@@ -63,17 +67,15 @@ impl<T> MonotonicQueue<T> {
     }
 }
 
-
 #[cfg(test)]
 mod tests {
     use crate::MonotonicQueue;
-
 
     #[test]
     fn monotonic_incresing_queue() {
         let mut mq = MonotonicQueue::new();
 
-        let is_less = |n1: &i32, n2:&i32| n1.gt(n2);
+        let is_less = |n1: &i32, n2: &i32| n1.gt(n2);
         mq.push_by(1, is_less);
         mq.push_by(2, is_less);
 
@@ -84,11 +86,10 @@ mod tests {
     fn monotonic_decreasing_queue() {
         let mut mq = MonotonicQueue::new();
 
-        let is_less = |n1: &i32, n2:&i32| n1.lt(n2);
+        let is_less = |n1: &i32, n2: &i32| n1.lt(n2);
         mq.push_by(1, is_less);
         mq.push_by(2, is_less);
 
         assert_eq!(mq.peek(), Some(&2));
     }
-
 }

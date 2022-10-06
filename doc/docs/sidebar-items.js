@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["MonotonicQueue","Monotonic Queue is a data structure, where the elements from front to end are either strictly increasing or decreasing. For example, a strictly increasing monotonic queue will be able to contain `[1, 3, 4, 6, 7]`, but not `[1, 1, 3]."]]});
