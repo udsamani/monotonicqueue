@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["docs"];
+window.ALL_CRATES = ["monotonicqueue"];
